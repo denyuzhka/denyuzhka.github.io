@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Удаление аккаунта и связанных данных DENYUZHKA">
+  <title>Удаление аккаунта — DENYUZHKA</title>
+  <style>
+    :root{color-scheme:dark;--bg:#020711;--surface:#0b1220;--surface2:#111a2b;--border:#263248;--text:#f8fafc;--muted:#9aa7bc;--purple:#b546f3;--blue:#3e78ff;--danger:#ff5d75;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 0,#25104e 0,transparent 36%),var(--bg);color:var(--text)}main{width:min(700px,calc(100% - 32px));margin:auto;padding:46px 0 64px}.brand{font-size:30px;font-weight:850;letter-spacing:-1.4px;margin:0 0 28px 6px}.brand span{background:linear-gradient(90deg,#cb4eff,#477cff);background-clip:text;color:transparent}.card{padding:32px;background:rgba(9,16,29,.96);border:1px solid var(--border);border-radius:24px;box-shadow:0 28px 80px rgba(0,0,0,.4)}.eyebrow{text-transform:uppercase;letter-spacing:1.6px;color:#bb6df2;font-weight:750;font-size:12px;margin:0 0 10px}h1{font-size:clamp(26px,6vw,36px);letter-spacing:-1.1px;line-height:1.1;margin:0 0 14px}h2{font-size:17px;margin:0 0 14px}.lead{font-size:17px;line-height:1.55;color:var(--muted);margin:0 0 28px}.data{padding:20px;border:1px solid #202c40;background:#09111f;border-radius:17px}.data ul{list-style:none;padding:0;margin:0}.data li{display:flex;align-items:center;gap:13px;padding:11px 0;border-bottom:1px solid #1a2537}.data li:last-child{border-bottom:0}.number,.step>span{display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:10px;background:#18142d;color:#c363ff;font-size:12px;font-weight:800}.data strong,.data small,.step strong,.step small{display:block}.data small,.step small{color:var(--muted);margin-top:3px;line-height:1.35}.warning{margin:20px 0 24px;padding:15px;border:1px solid rgba(255,93,117,.35);background:rgba(255,46,80,.07);border-radius:14px;color:#ff9aaa;line-height:1.5}.step{display:flex;gap:12px;align-items:center;margin-bottom:18px}.step>span{background:#172240;color:#6f94ff}label{display:block;margin:14px 0 7px;color:#b8c2d2;font-size:13px;font-weight:600}input{width:100%;height:52px;padding:0 15px;border:1px solid #2b3850;border-radius:13px;background:var(--surface2);color:#fff;font-size:16px;outline:0}input:focus{border-color:#a64dff;box-shadow:0 0 0 3px rgba(166,77,255,.14)}button{width:100%;height:54px;margin-top:18px;border:0;border-radius:14px;color:#fff;font-size:16px;font-weight:800;cursor:pointer}button:disabled{opacity:.42;cursor:not-allowed}.primary{background:linear-gradient(90deg,var(--purple),var(--blue))}.danger{background:#dc304d}.status{min-height:24px;margin:15px 0 0;text-align:center;color:#ff9aaa;font-size:14px}.status.ok{color:#55dc8a}.success{text-align:center;padding:38px 0}.success p{color:var(--muted);line-height:1.6}.mark{display:grid;place-items:center;width:62px;height:62px;margin:0 auto 22px;border-radius:50%;background:rgba(42,210,112,.12);color:#4ade80;font-size:32px;font-weight:800}.hidden{display:none}footer{text-align:center;color:#657086;font-size:12px;line-height:1.8;margin-top:20px}footer a{color:#8d9bb2;text-underline-offset:3px}@media(max-width:560px){main{padding-top:26px}.brand{margin-bottom:20px}.card{padding:21px;border-radius:20px}.lead{font-size:15px}.data{padding:14px}}
+  </style>
+</head>
+<body>
+<main>
+  <header class="brand" aria-label="DENYUZHKA"><span>DENY</span>UZHKA</header>
+  <article class="card">
+    <div id="flow">
+      <p class="eyebrow">Управление данными</p>
+      <h1>Удаление аккаунта DENYUZHKA</h1>
+      <p class="lead">Здесь можно удалить аккаунт и связанные данные без установки приложения.</p>
+      <section class="data"><h2>Что будет удалено</h2><ul>
+        <li><span class="number">01</span><div><strong>Учётная запись</strong><small>Электронная почта и данные авторизации</small></div></li>
+        <li><span class="number">02</span><div><strong>Финансовые записи</strong><small>Транзакции, категории, кошельки и бюджеты</small></div></li>
+        <li><span class="number">03</span><div><strong>Накопления</strong><small>Конверты и другие связанные данные аккаунта</small></div></li>
+      </ul></section>
+      <div class="warning"><b>Удаление необратимо.</b> Восстановить аккаунт и данные после подтверждения будет невозможно.</div>
+      <form id="loginForm">
+        <div class="step"><span>1</span><div><strong>Подтвердите личность</strong><small>Войдите в аккаунт DENYUZHKA</small></div></div>
+        <label for="email">Электронная почта</label><input id="email" type="email" autocomplete="username" required>
+        <label for="password">Пароль</label><input id="password" type="password" autocomplete="current-password" required>
+        <button id="loginButton" class="primary" type="submit">Войти и продолжить</button>
+      </form>
+      <section id="deleteStep" class="hidden">
+        <div class="step"><span>2</span><div><strong>Подтвердите удаление</strong><small>Введите слово УДАЛИТЬ</small></div></div>
+        <label for="confirmation">Подтверждение</label><input id="confirmation" autocomplete="off" placeholder="УДАЛИТЬ">
+        <button id="deleteButton" class="danger" type="button" disabled>Удалить аккаунт и данные</button>
+      </section>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </div>
+    <section id="success" class="success hidden"><div class="mark">✓</div><h1>Аккаунт удалён</h1><p>Ваш аккаунт DENYUZHKA и связанные с ним данные успешно удалены.</p></section>
+  </article>
+  <footer>DENYUZHKA · Персональный финансовый помощник<br><a href="./privacy/">Политика конфиденциальности</a> · <a href="mailto:denyuzhkasupport@gmail.com">Поддержка</a></footer>
+</main>
+<script>
+  const SUPABASE_URL='https://ckakkbwugiofsixgdnsa.supabase.co';
+  const SUPABASE_KEY='sb_publishable_9ZcUt-yN9WhYTAo67aJpag_ccWKNwG6';
+  const loginForm=document.querySelector('#loginForm'),loginButton=document.querySelector('#loginButton'),deleteStep=document.querySelector('#deleteStep'),confirmation=document.querySelector('#confirmation'),deleteButton=document.querySelector('#deleteButton'),status=document.querySelector('#status');let token='';
+  const message=(text,ok=false)=>{status.textContent=text;status.className=ok?'status ok':'status'};
+  loginForm.addEventListener('submit',async event=>{event.preventDefault();loginButton.disabled=true;message('Проверяем данные…');try{const response=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},body:JSON.stringify({email:document.querySelector('#email').value.trim(),password:document.querySelector('#password').value})});const data=await response.json();if(!response.ok||!data.access_token)throw new Error();token=data.access_token;loginForm.classList.add('hidden');deleteStep.classList.remove('hidden');message('Личность подтверждена.',true)}catch{message('Не удалось войти. Проверьте электронную почту и пароль.');loginButton.disabled=false}});
+  confirmation.addEventListener('input',()=>deleteButton.disabled=confirmation.value.trim().toUpperCase()!=='УДАЛИТЬ');
+  deleteButton.addEventListener('click',async()=>{if(!token||confirmation.value.trim().toUpperCase()!=='УДАЛИТЬ')return;deleteButton.disabled=true;confirmation.disabled=true;message('Удаляем аккаунт и связанные данные…');try{const response=await fetch(SUPABASE_URL+'/functions/v1/delete-account',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token,'apikey':SUPABASE_KEY},body:JSON.stringify({confirm:true})});if(!response.ok)throw new Error();document.querySelector('#flow').classList.add('hidden');document.querySelector('#success').classList.remove('hidden')}catch{message('Не удалось удалить аккаунт. Попробуйте ещё раз позже.');deleteButton.disabled=false;confirmation.disabled=false}});
+</script>
+</body>
+</html>
