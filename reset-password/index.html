@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Безопасное восстановление пароля DENYUZHKA">
+  <title>Новый пароль — DENYUZHKA</title>
+  <style>
+    :root{color-scheme:dark;--bg:#020711;--surface:#0b1220;--surface2:#111a2b;--border:#263248;--text:#f8fafc;--muted:#9aa7bc;--purple:#b546f3;--blue:#3e78ff;--danger:#ff7890;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 0,#25104e 0,transparent 38%),var(--bg);color:var(--text)}main{width:min(520px,calc(100% - 32px));margin:auto;padding:48px 0}.brand{font-size:30px;font-weight:850;letter-spacing:-1.4px;margin:0 0 28px 6px}.brand span{background:linear-gradient(90deg,#cb4eff,#477cff);background-clip:text;color:transparent}.card{padding:32px;background:rgba(9,16,29,.96);border:1px solid var(--border);border-radius:24px;box-shadow:0 28px 80px rgba(0,0,0,.4)}.icon{display:grid;place-items:center;width:68px;height:68px;margin:0 auto 20px;border-radius:21px;background:rgba(181,70,243,.13);border:1px solid rgba(181,70,243,.35);font-size:30px}h1{text-align:center;font-size:29px;letter-spacing:-.8px;margin:0 0 10px}.lead{text-align:center;color:var(--muted);line-height:1.55;margin:0 0 26px}label{display:block;margin:14px 0 7px;color:#b8c2d2;font-size:13px;font-weight:650}input{width:100%;height:52px;padding:0 15px;border:1px solid #2b3850;border-radius:13px;background:var(--surface2);color:#fff;font-size:16px;outline:0}input:focus{border-color:#a64dff;box-shadow:0 0 0 3px rgba(166,77,255,.14)}button,.app-link{display:grid;place-items:center;width:100%;height:54px;margin-top:18px;border:0;border-radius:14px;background:linear-gradient(90deg,var(--purple),var(--blue));color:#fff;text-decoration:none;font-size:16px;font-weight:800;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}.status{min-height:24px;margin:16px 0 0;text-align:center;color:var(--danger);font-size:14px;line-height:1.45}.status.ok{color:#55dc8a}.hidden{display:none}.success{text-align:center}.mark{display:grid;place-items:center;width:62px;height:62px;margin:0 auto 20px;border-radius:50%;background:rgba(42,210,112,.12);color:#4ade80;font-size:32px;font-weight:800}footer{text-align:center;color:#657086;font-size:12px;line-height:1.8;margin-top:20px}footer a{color:#8d9bb2}@media(max-width:560px){main{padding-top:26px}.card{padding:22px;border-radius:20px}}
+  </style>
+</head>
+<body>
+<main>
+  <header class="brand"><span>DENY</span>UZHKA</header>
+  <article class="card">
+    <section id="flow">
+      <div class="icon">🔑</div>
+      <h1>Новый пароль</h1>
+      <p class="lead">Придумайте новый пароль для аккаунта DENYUZHKA.</p>
+      <form id="form">
+        <label for="password">Новый пароль</label>
+        <input id="password" type="password" minlength="8" autocomplete="new-password" required>
+        <label for="confirmation">Повторите новый пароль</label>
+        <input id="confirmation" type="password" minlength="8" autocomplete="new-password" required>
+        <button id="submit" type="submit">Сохранить новый пароль</button>
+      </form>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </section>
+    <section id="success" class="success hidden">
+      <div class="mark">✓</div>
+      <h1>Пароль изменён</h1>
+      <p class="lead">Теперь можно войти в DENYUZHKA с новым паролем.</p>
+      <a class="app-link" href="denyuzhka://auth">Открыть приложение</a>
+    </section>
+  </article>
+  <footer>DENYUZHKA · Персональный финансовый помощник<br><a href="../privacy/">Политика конфиденциальности</a> · <a href="mailto:denyuzhka.team@gmail.com">Поддержка</a></footer>
+</main>
+<script>
+  const SUPABASE_URL='https://ckakkbwugiofsixgdnsa.supabase.co';
+  const SUPABASE_KEY='sb_publishable_9ZcUt-yN9WhYTAo67aJpag_ccWKNwG6';
+  const params=new URLSearchParams(location.search),hash=new URLSearchParams(location.hash.slice(1));
+  const accessToken=hash.get('access_token')||params.get('access_token');
+  const errorDescription=hash.get('error_description')||params.get('error_description');
+  const form=document.querySelector('#form'),submit=document.querySelector('#submit'),status=document.querySelector('#status');
+  const message=(text,ok=false)=>{status.textContent=text;status.className=ok?'status ok':'status'};
+  if(errorDescription){form.classList.add('hidden');message(decodeURIComponent(errorDescription.replace(/\+/g,' ')))}
+  else if(!accessToken){form.classList.add('hidden');message('Ссылка недействительна или уже была использована. Запросите новое письмо в приложении DENYUZHKA.')}
+  form.addEventListener('submit',async event=>{
+    event.preventDefault();
+    const password=document.querySelector('#password').value,confirmation=document.querySelector('#confirmation').value;
+    if(password.length<8)return message('Пароль должен содержать не менее 8 символов.');
+    if(password!==confirmation)return message('Пароли не совпадают.');
+    submit.disabled=true;message('Сохраняем новый пароль…',true);
+    try{
+      const response=await fetch(SUPABASE_URL+'/auth/v1/user',{method:'PUT',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+accessToken},body:JSON.stringify({password})});
+      if(!response.ok)throw new Error();
+      document.querySelector('#flow').classList.add('hidden');document.querySelector('#success').classList.remove('hidden');history.replaceState(null,'',location.pathname);
+    }catch{message('Не удалось изменить пароль. Возможно, ссылка истекла. Запросите новое письмо.');submit.disabled=false}
+  });
+</script>
+</body>
+</html>
