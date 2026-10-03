@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.denyuzhka.app",
+      "sha256_cert_fingerprints": [
+        "1A:6B:C8:78:7E:7A:D2:A3:B9:E8:62:A3:AC:D9:2C:E6:A3:9A:E8:75:7E:E4:B4:2F:5B:4D:EF:16:0A:2A:0D:DE"
+      ]
+    }
+  }
+]
